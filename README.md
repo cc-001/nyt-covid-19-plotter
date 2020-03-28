@@ -42,4 +42,4 @@ https://en.wikipedia.org/wiki/San_Mateo_County,_California
 https://en.wikipedia.org/wiki/San_Mateo_County,_California
 769545
 ```
-[Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/san_francisco_california_06075_cases_1000_vs_san_mateo_california_06081.png)
+![Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/san_francisco_california_06075_cases_1000_vs_san_mateo_california_06081.png)

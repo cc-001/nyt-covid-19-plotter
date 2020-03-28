@@ -25,6 +25,10 @@ New York City is treated as a special case because this data is from The New Yor
 
 NYC FIPS code (doesn't exist) is -1 in this tool, otherwise it is the full FIPS code including the state.
 
+**Doubling Time**
+
+This is the sexy kid that everyone is talking about.  I didn't assume a curve type like exponential, instead I linearly interpolate the actual data and go as far as I can until it breaks.  The advantage to this is I'm not assuming anything about the curve for extrapolation; the disadvantage is that it's going to lag until the solver can solve it.
+
 **Usage**
 
 ```
@@ -40,6 +44,7 @@ cases_1000 - Cases per-1000 population from Wikipedia estimated value
 deaths_1000 - Deaths per-1000 population from Wikipedia estimated value
 cases_gradient - Derivitive (change rate) of cases
 deaths_gradient - Derivitive (change rate) of deaths
+cases_doubling - Doubling time in days
 ```
 
 Ex (Win64):
@@ -65,3 +70,11 @@ https://en.wikipedia.org/wiki/San_Mateo_County,_California
 769545
 ```
 ![Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/san_francisco_california_06075_cases_gradient_vs_san_mateo_california_06081.png)
+
+```
+D:\Temp\v2>python plotter.py 06081 -type cases_doubling
+https://en.wikipedia.org/wiki/San_Mateo_County,_California
+https://en.wikipedia.org/wiki/San_Mateo_County,_California
+769545```
+
+

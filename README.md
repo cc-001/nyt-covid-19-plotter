@@ -1,6 +1,8 @@
 # nyt-covid-19-plotter
 Plots Covid-19 data from The New York Times with population data from Wikipedia.
 
+**Install**
+
 This requires a fairly up to date python 3 install along with any required modules.  All the required modules can be installed using pip (pip3).
 
 Ex:
@@ -11,11 +13,17 @@ pip install numpy
 
 Install whatever you're missing this way.  This was done quickly in a couple hours on the weekend so it's not handling errors or telling you how to use it.
 
+**License/Attribution**
+
+Completely free and clear with no citations or links necessary, have at it.
+
+**FIPS Codes**
+
 The county is looked up using the FIPS code, in this case it needs to be the full code with the state:  https://en.wikipedia.org/wiki/FIPS_county_code
 
-New York City is treated as a special case because this data is from The New York Times:  https://github.com/nytimes/covid-19-data
+New York City is treated as a special case because this data is from The New York Times:  https://github.com/nytimes/covid-19-data  NYC FIPS code is replaced with -1 in this tool, otherwise it is the full FIPS code including the state.
 
-Usage:
+**Usage**
 
 ```
 python plotter.py <fips> -type(optional) <type> -vs(optional) <fips> -update(optional)

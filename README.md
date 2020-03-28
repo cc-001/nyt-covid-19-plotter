@@ -1,6 +1,10 @@
 # nyt-covid-19-plotter
 Plots Covid-19 data from The New York Times with population data from Wikipedia.
 
+**License/Attribution**
+
+Completely free and clear with no citations or links necessary, have at it.
+
 **Install**
 
 This requires a fairly up to date python 3 install along with any required modules.  All the required modules can be installed using pip (pip3).
@@ -12,10 +16,6 @@ pip install numpy
 ```
 
 Install whatever you're missing this way.  This was done quickly in a couple hours on the weekend so it's not handling errors or telling you how to use it.
-
-**License/Attribution**
-
-Completely free and clear with no citations or links necessary, have at it.
 
 **FIPS Codes**
 

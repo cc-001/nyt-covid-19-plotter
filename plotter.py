@@ -165,7 +165,8 @@ if plot_type == PlotType.CASES_1000 or plot_type == PlotType.DEATHS_1000:
 title = get_county_state(fips, rows) + "_" + plot_type.name.lower()
 if vs_fips >= -1:
 	title = title + "_vs_" + get_county_state(vs_fips, rows)
-	citations = citations + "\n" + str(next_citation) + " - Estimated population - " + build_wikipedia_url(vs_fips, rows)
+	if plot_type == PlotType.CASES_1000 or plot_type == PlotType.DEATHS_1000:
+		citations = citations + "\n" + str(next_citation) + " - Estimated population - " + build_wikipedia_url(vs_fips, rows)
 
 plt.title("\n".join(wrap(title, 60)))
 plt.xlabel("Date")

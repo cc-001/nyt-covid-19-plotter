@@ -9,7 +9,7 @@ Ex:
 pip install numpy
 ```
 
-Install whatever you're missing this way.  This was done quickly in a couple hours on the weekend so it's not handling errors or telling you how to use it.  Here's a quick guide.
+Install whatever you're missing this way.  This was done quickly in a couple hours on the weekend so it's not handling errors or telling you how to use it.
 
 The county is looked up using the FIPS code, in this case it needs to be the full code with the state:  https://en.wikipedia.org/wiki/FIPS_county_code
 
@@ -22,6 +22,7 @@ python plotter.py <fips> -type(optional) <type> -vs(optional) <fips> -update(opt
 
 -update - Downloads and caches data from github, run this first and whenever you want to update it
 -type - one of:  cases, deaths, cases_1000, deaths_1000, cases_gradient, deaths_gradient
+-vs - fips code, versus mode draws an additional plot line for comparison
 
 cases - Case count
 deaths - Death count

@@ -21,7 +21,9 @@ Install whatever you're missing this way.  This was done quickly in a couple hou
 
 The county is looked up using the FIPS code, in this case it needs to be the full code with the state:  https://en.wikipedia.org/wiki/FIPS_county_code
 
-New York City is treated as a special case because this data is from The New York Times:  https://github.com/nytimes/covid-19-data  NYC FIPS code is replaced with -1 in this tool, otherwise it is the full FIPS code including the state.
+New York City is treated as a special case because this data is from The New York Times:  https://github.com/nytimes/covid-19-data  
+
+NYC FIPS code (doesn't exist) is -1 in this tool, otherwise it is the full FIPS code including the state.
 
 **Usage**
 

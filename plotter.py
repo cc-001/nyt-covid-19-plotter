@@ -1,10 +1,13 @@
 # covid-19 nyt data plotter
 
 import numpy as np
+from scipy import interpolate
+from scipy import optimize
 from matplotlib import pyplot as plt
 from matplotlib import dates
 from textwrap import wrap
 import datetime as dt
+from datetime import timedelta
 import urllib.request
 import re
 import sys
@@ -20,6 +23,7 @@ class PlotType(Enum):
 	DEATHS_1000 = 4
 	CASES_GRADIENT = 5
 	DEATHS_GRADIENT = 6
+	CASES_DOUBLING = 7
 
 def get_path() -> str:
 	return os.path.join(os.getcwd(), "Data")
@@ -73,11 +77,30 @@ def get_county_state(fips: int, rows: List[Dict[str, str]]) -> str:
 			return county + "_" + state + "_" + row['fips']
 	return ""
 
+# find root of this func
+def func_root(x, f, d) -> float:
+	"""x = doubling time, func at the doubling time is 2x the base args f(d)"""
+	return f(x+d) - 2.0*f(d)
+
+# get roots with days buffer on the end since we're not extrapolating
+def get_roots(f, days_deltas, days, roots: List[float]) -> bool:
+	roots.clear()
+	try:
+		compute_days = len(days_deltas)-days
+		for x in range(0, compute_days):
+			sol = optimize.root_scalar(func_root, args=(f, days_deltas[x]), method="brentq", bracket=[0, days_deltas[-1] - days_deltas[x]])
+			roots.append(sol.root)
+		return True
+	except:
+		return False
+
+# performs computation and plots graph line	
 def plot(fips: int, rows: List[Dict[str, str]], type: PlotType):
 	if fips < -1:
 		return
 
 	days_data = []
+	days_deltas = [0]
 	cases_data = []
 	deaths_data = []
 
@@ -85,6 +108,10 @@ def plot(fips: int, rows: List[Dict[str, str]], type: PlotType):
 	population = get_wikipedia_population(fips, rows)
 
 	date_list = [dt.datetime.strptime(x, "%Y-%m-%d") for x in days_data]
+	for idx in range(1, len(date_list)):
+		delta = date_list[idx] - date_list[0]
+		days_deltas.append(delta.days)
+		
 	population = get_wikipedia_population(fips, rows)
 	print(population)
 
@@ -96,13 +123,29 @@ def plot(fips: int, rows: List[Dict[str, str]], type: PlotType):
 	deaths_grad = np.gradient(deaths)
 	label = get_county_state(fips, rows) + "_" + type.name.lower()
 
+	roots = []
+	
+	# doubling time, don't assume a curve fit to get data for the end, instead just truncate and use lerp'd points
+	# this means no data for the end of the curve, but also no assumptions about the curve form
+	f = interpolate.interp1d(np.asarray(days_deltas), cases)
+	days = 1
+	while days < len(date_list):
+		if get_roots(f, days_deltas, days, roots):
+			break;
+		else:
+			days = days + 1
+
+	if type == PlotType.CASES_DOUBLING:
+		date_list = date_list[:len(days_deltas)-days]
+	
 	switcher = {
 		PlotType.CASES: cases,
 		PlotType.DEATHS: deaths,
 		PlotType.CASES_GRADIENT: cases_grad,
 		PlotType.DEATHS_GRADIENT: deaths_grad,
 		PlotType.CASES_1000: cases_1000,
-		PlotType.DEATHS_1000: deaths_1000
+		PlotType.DEATHS_1000: deaths_1000,
+		PlotType.CASES_DOUBLING: roots
 	}
 	plt.plot(date_list, switcher.get(type), label=label)
 
@@ -114,6 +157,7 @@ vs_fips = -2
 # parse options
 update_data = False
 plot_type = PlotType.DEATHS
+days_out = 6
 arg = 2
 while arg < len(sys.argv):
 	if sys.argv[arg] == "-update":

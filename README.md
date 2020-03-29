@@ -5,7 +5,7 @@ Now includes support for world-wide data from:
 
 https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
 
-the European Centre for Disease Prevention and Control. See their website for details, population data comes from that same download rather than from Wikipedia.
+the European Centre for Disease Prevention and Control. See their website for details.  Population data comes from that same download rather than from Wikipedia.
 
 **License/Attribution**
 

@@ -46,12 +46,12 @@ python plotter.py <fips/geoId> -type(optional) <type> -vs(optional) <fips/geoId>
 
 -update - Downloads and caches data, run this first and whenever you want to update it
 -type - one of:  cases, deaths, cases_1000, deaths_1000, cases_gradient, deaths_gradient
--vs - fips code, versus mode draws an additional plot line for comparison
+-vs - fips code or country code, versus mode draws an additional plot line for comparison
 
 cases - Case count
 deaths - Death count
-cases_1000 - Cases per-1000 population from Wikipedia estimated value
-deaths_1000 - Deaths per-1000 population from Wikipedia estimated value
+cases_1000 - Cases per-1000 population
+deaths_1000 - Deaths per-1000 population
 cases_gradient - Derivitive (change rate) of cases
 deaths_gradient - Derivitive (change rate) of deaths
 cases_doubling - Doubling time in days
@@ -103,3 +103,12 @@ https://en.wikipedia.org/wiki/Orleans_County,_Louisiana
 ```
 
 ![Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/new_york_city_new_york__deaths_1000_gradient_vs_orleans_louisiana_22071.png)
+
+```
+D:\Temp\v2>python plotter.py CZ -type cases_1000 -vs -1
+CZ
+10625695
+https://en.wikipedia.org/wiki/New_York_City
+8398748
+```
+![Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/czech_republic_cze__cases_1000_vs_new_york_city_new_york_.png)

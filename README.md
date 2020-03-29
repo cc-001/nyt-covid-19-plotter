@@ -12,7 +12,7 @@ This requires a fairly up to date python 3 install along with any required modul
 Ex:
 
 ```
-pip install numpy
+pip install scipy numpy matplotlib
 ```
 
 Install whatever you're missing this way.  This was done quickly in a couple hours on the weekend so it's not handling errors or telling you how to use it.

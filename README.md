@@ -45,6 +45,8 @@ deaths_1000 - Deaths per-1000 population from Wikipedia estimated value
 cases_gradient - Derivitive (change rate) of cases
 deaths_gradient - Derivitive (change rate) of deaths
 cases_doubling - Doubling time in days
+cases_1000_gradient - Derivitive (change rate) of cases_1000, useful for vs comparisons
+deaths_1000_gradient - Derivitive (change rate) of deaths_1000, useful for vs comparisons
 ```
 
 Ex (Win64):
@@ -79,3 +81,15 @@ https://en.wikipedia.org/wiki/San_Mateo_County,_California
 ```
 
 ![Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/san_mateo_california_06081_cases_doubling.png)
+
+```
+D:\Temp\v2>python plotter.py -1 -type deaths_1000_gradient -vs 22071
+https://en.wikipedia.org/wiki/New_York_City
+https://en.wikipedia.org/wiki/New_York_City
+8398748
+https://en.wikipedia.org/wiki/Orleans_County,_Louisiana
+https://en.wikipedia.org/wiki/Orleans_County,_Louisiana
+391006
+```
+
+![Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/new_york_city_new_york__deaths_1000_gradient_vs_orleans_louisiana_22071.png)

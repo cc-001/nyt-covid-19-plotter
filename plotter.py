@@ -24,6 +24,8 @@ class PlotType(Enum):
 	CASES_GRADIENT = 5
 	DEATHS_GRADIENT = 6
 	CASES_DOUBLING = 7
+	CASES_1000_GRADIENT = 8
+	DEATHS_1000_GRADIENT = 9
 
 def get_path() -> str:
 	return os.path.join(os.getcwd(), "Data")
@@ -117,8 +119,10 @@ def plot(fips: int, rows: List[Dict[str, str]], type: PlotType):
 
 	cases = np.asarray(cases_data)
 	cases_1000 = np.divide(cases, float(population) / 1000)
+	cases_1000_gradient = np.gradient(cases_1000)
 	deaths = np.asarray(deaths_data)
 	deaths_1000 = np.divide(deaths, float(population) / 1000)
+	deaths_1000_gradient = np.gradient(deaths_1000)
 	cases_grad = np.gradient(cases)
 	deaths_grad = np.gradient(deaths)
 	label = get_county_state(fips, rows) + "_" + type.name.lower()
@@ -145,7 +149,9 @@ def plot(fips: int, rows: List[Dict[str, str]], type: PlotType):
 		PlotType.DEATHS_GRADIENT: deaths_grad,
 		PlotType.CASES_1000: cases_1000,
 		PlotType.DEATHS_1000: deaths_1000,
-		PlotType.CASES_DOUBLING: roots
+		PlotType.CASES_DOUBLING: roots,
+		PlotType.CASES_1000_GRADIENT: cases_1000_gradient,
+		PlotType.DEATHS_1000_GRADIENT: deaths_1000_gradient
 	}
 	plt.plot(date_list, switcher.get(type), label=label)
 

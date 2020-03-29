@@ -52,11 +52,11 @@ cases - Case count
 deaths - Death count
 cases_1000 - Cases per-1000 population
 deaths_1000 - Deaths per-1000 population
-cases_gradient - Derivitive (change rate) of cases
-deaths_gradient - Derivitive (change rate) of deaths
+cases_gradient - Derivative (change rate) of cases
+deaths_gradient - Derivative (change rate) of deaths
 cases_doubling - Doubling time in days
-cases_1000_gradient - Derivitive (change rate) of cases_1000, useful for vs comparisons
-deaths_1000_gradient - Derivitive (change rate) of deaths_1000, useful for vs comparisons
+cases_1000_gradient - Derivative (change rate) of cases_1000, useful for vs comparisons
+deaths_1000_gradient - Derivative (change rate) of deaths_1000, useful for vs comparisons
 ```
 
 Ex (Win64):

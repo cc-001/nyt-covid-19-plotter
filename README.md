@@ -31,7 +31,7 @@ New York City is treated as a special case because this data is from The New Yor
 
 NYC FIPS code (doesn't exist) is -1 in this tool, otherwise it is the full FIPS code including the state.
 
-**County Code - "geoId"**
+**Country Code - "geoId"**
 
 This can be used instead of a FIPS code for world-wide data.  It seems to be a two letter code from https://www.iban.com/country-codes which seems to work.
 

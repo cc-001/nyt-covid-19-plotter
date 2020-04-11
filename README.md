@@ -89,7 +89,19 @@ covid_tracking_key_1000 <key> = Plot this key from Covid-19 Tracking Project per
 
 Covid-19 can only be mixed with other types on cases/deaths and cases_1000/deaths_1000.
 
-Ex (Win64):
+**Examples (Win64):**
+
+Covid-19 state by state comparison on key per-1000 population.
+
+```
+D:\Temp\v2>python plotter.py CA -state -type COVID_TRACKING_KEY_1000 inIcuCurrently -vs NY -vsstate
+https://en.wikipedia.org/wiki/California_(state)
+39512223
+https://en.wikipedia.org/wiki/New_York_(state)
+19453561
+```
+
+![Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/California_covid_tracking_key_1000_inIcuCurrently_vs_New%20York.png)
 
 Mixing state data from Covid-19 Project and WW data.
 

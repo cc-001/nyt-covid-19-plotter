@@ -1,11 +1,17 @@
 # nyt-covid-19-plotter
 Plots Covid-19 data from The New York Times with USA population data from Wikipedia.
 
-Now includes support for world-wide data from:
+Includes support for world-wide data from:
 
 https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
 
 the European Centre for Disease Prevention and Control. See their website for details.  Population data comes from that same download rather than from Wikipedia.
+
+Includes support for Covid-19 Tracking Project data from:
+
+https://covidtracking.com/
+
+population data is not available from them so again it comes from Wikipedia.
 
 **License/Attribution**
 
@@ -18,7 +24,7 @@ This requires a fairly up to date python 3 install along with any required modul
 Ex:
 
 ```
-pip install scipy numpy matplotlib requests_ntlm
+pip install scipy numpy matplotlib requests_ntlm us
 ```
 
 Install whatever you're missing this way.  This was done quickly in a couple hours on the weekend so it's not handling errors or telling you how to use it.
@@ -35,6 +41,22 @@ NYC FIPS code (doesn't exist) is -1 in this tool, otherwise it is the full FIPS 
 
 This can be used instead of a FIPS code for world-wide data.  It seems to be a two letter code from https://www.iban.com/country-codes which seems to work.
 
+**State Abbreviation**
+
+If argument:
+
+```
+-state
+```
+
+is supplied the first arg is treated as a two letter state abbreviation instead of Country Code.
+
+```
+-vsstate
+```
+
+for vs comparisons where the vs arg should be treated as a two letter state abbreviation.
+
 **Doubling Time**
 
 This is the sexy kid that everyone is talking about.  I didn't assume a curve type like exponential, instead I linearly interpolate the actual data and go as far as I can until it breaks.  The advantage to this is I'm not assuming anything about the curve for extrapolation; the disadvantage is that it's going to lag until the solver can solve it.
@@ -47,6 +69,8 @@ python plotter.py <fips/geoId> -type(optional) <type> -vs(optional) <fips/geoId>
 -update - Downloads and caches data, run this first and whenever you want to update it
 -type - one of:  cases, deaths, cases_1000, deaths_1000, cases_gradient, deaths_gradient
 -vs - fips code or country code, versus mode draws an additional plot line for comparison
+-state - treat non integral code as two letter state abbreviation for Covid-19 Tracking Project
+-vsstate - treat non integral code as two letter state abbreviation for Covid-19 Tracking Project
 
 cases - Case count
 deaths - Death count
@@ -57,7 +81,13 @@ deaths_gradient - Derivative (change rate) of deaths
 cases_doubling - Doubling time in days
 cases_1000_gradient - Derivative (change rate) of cases_1000, useful for vs comparisons
 deaths_1000_gradient - Derivative (change rate) of deaths_1000, useful for vs comparisons
+covid_tracking_key = Plot this key from Covid-19 Tracking Project, see data covid_tracking_states_daily.csv
+covid_tracking_key_1000 = Plot this key from Covid-19 Tracking Project per-1000 population, see data covid_tracking_states_daily.csv
 ```
+
+**Note**
+
+Covid-19 can only be mixed with other types on cases/deaths and cases_1000/deaths_1000.
 
 Ex (Win64):
 

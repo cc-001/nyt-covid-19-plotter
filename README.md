@@ -81,8 +81,8 @@ deaths_gradient - Derivative (change rate) of deaths
 cases_doubling - Doubling time in days
 cases_1000_gradient - Derivative (change rate) of cases_1000, useful for vs comparisons
 deaths_1000_gradient - Derivative (change rate) of deaths_1000, useful for vs comparisons
-covid_tracking_key = Plot this key from Covid-19 Tracking Project, see data covid_tracking_states_daily.csv
-covid_tracking_key_1000 = Plot this key from Covid-19 Tracking Project per-1000 population, see data covid_tracking_states_daily.csv
+covid_tracking_key <key> = Plot this key from Covid-19 Tracking Project, see data covid_tracking_states_daily.csv
+covid_tracking_key_1000 <key> = Plot this key from Covid-19 Tracking Project per-1000 population, see data covid_tracking_states_daily.csv
 ```
 
 **Note**
@@ -90,6 +90,18 @@ covid_tracking_key_1000 = Plot this key from Covid-19 Tracking Project per-1000 
 Covid-19 can only be mixed with other types on cases/deaths and cases_1000/deaths_1000.
 
 Ex (Win64):
+
+Mixing state data from Covid-19 Project and WW data.
+
+```
+D:\Temp\v2>python plotter.py CA -state -type DEATHS_1000 -vs US
+PlotType.DEATHS_1000
+https://en.wikipedia.org/wiki/California_(state)
+39512223
+US
+327167434
+```
+![Output](https://github.com/cc-001/nyt-covid-19-plotter/blob/master/California_deaths_1000__vs_united_states_of_america_usa_.png)
 
 ```
 D:\Temp\v2>python plotter.py 06075 -vs 06081 -type cases_1000

@@ -88,6 +88,8 @@ def build_wikipedia_url(fips: int, abbr: str, rows: List[Dict[str, str]]) -> str
 	for row in rows:
 		if match_region(fips, abbr, state, row):
 			if state:
+				if abbr == 'GA':
+					return "https://en.wikipedia.org/wiki/Georgia_(U.S._state)"
 				return "https://en.wikipedia.org/wiki/" + str(us.states.lookup(abbr)).replace(" ", "_")
 			elif not row['fips']:
 				return "https://en.wikipedia.org/wiki/New_York_City"

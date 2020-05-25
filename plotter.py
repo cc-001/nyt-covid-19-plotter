@@ -124,7 +124,6 @@ def build_lists(fips: int, abbr: str, state: bool, rows: List[Dict[str, str]], d
 	ctp_key: str , ctp_key_data: List[int]):
 	for row in rows:
 		if match_region(fips, abbr, state, row):
-			ok = True
 			if ctp_key and ctp_key in row:
 				try:
 					value = int(int(row[ctp_key]))
@@ -399,7 +398,7 @@ if vs_fips > FIPS_INVALID or vs_region_abbr:
 		else:
 			title = title + "_vs_" + get_region(vs_fips, vs_region_abbr, False, rows_ww)
 	else:
-		title = title + "_vs_" + get_region(vs_fips, vs_region_abbr, rows)
+		title = title + "_vs_" + get_region(vs_fips, vs_region_abbr, False, rows)
 	if needs_wikipedia_citation(vs_fips, vs_region_as_state, plot_type):
 		if vs_region_as_state:
 			citations = citations + "\n" + str(next_citation) + " - Estimated population - " + build_wikipedia_url(vs_fips, vs_region_abbr, rows_ctp)
